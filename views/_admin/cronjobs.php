@@ -44,8 +44,8 @@
 	</table>
 	<div class="buttonbar">
 		<ul>
-			<li class="end"><a href="#" class="ico ico_no" id="remove"><?=lang('btn_remove_cronjobs')?></a></li>
-			<li class="end"><a href="#" class="ico ico_yes" id="submit"><?=lang('btn_save_cronjobs')?></a></li>
+			<li class="unattached"><a href="#" class="ico ico_no" id="remove"><?=lang('btn_remove_cronjobs')?></a></li>
+			<li class="unattached"><a href="#" class="ico ico_yes" id="submit"><?=lang('btn_save_cronjobs')?></a></li>
 		</ul>
 	</div>
 	<?=$this->form->hidden('action', $action)?>
