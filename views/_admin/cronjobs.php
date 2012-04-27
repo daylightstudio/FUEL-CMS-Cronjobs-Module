@@ -3,7 +3,7 @@
 	<p class="instructions"><?=lang('cronjobs_instructions')?></p>
 	
 	<?=$this->form->open(array('id' => 'form', 'method' => 'post'))?>
-	<label for="mailto"><?=lang('cronjobs_mailto')?></label> <?=$this->form->text('mailto', $mailto, 'size="30"')?> &nbsp; 
+	<label for="mailto"><?=lang('cronjobs_mailto')?></label> <?=$this->form->text('mailto', $mailto, 'size="30" placeholder="email address"')?> &nbsp; 
 	<?=lang('cronjobs_current_datetime').' '.date('Y-m-d H:i:s')?>
 	<table border="0" cellspacing="0" cellpadding="0" class="cronjob">
 		<tbody>
@@ -22,12 +22,12 @@
 			$command = implode(' ', $command);
 			
 			if (count($time_fields) > 5){
-				echo "<td>".$this->form->text('min['.$key.']', $time_fields[0], 'size="7"')."</td>\n";
-				echo "<td>".$this->form->text('hour['.$key.']', $time_fields[1], 'size="7"')."</td>\n";
-				echo "<td>".$this->form->text('month_day['.$key.']', $time_fields[2], 'size="7"')."</td>\n";
-				echo "<td>".$this->form->text('month_num['.$key.']', $time_fields[3], 'size="7"')."</td>\n";
-				echo "<td>".$this->form->text('week_day['.$key.']', $time_fields[4], 'size="7"')."</td>\n";
-				echo "<td>".$this->form->text('command['.$key.']', $command, 'size="60" style="float: left"')." <a href=\"#\" class=\"ico ico_remove_line\"></a></td>\n";
+				echo "<td>".$this->form->text('min['.$key.']', $time_fields[0], 'size="7" placeholder="min"')."</td>\n";
+				echo "<td>".$this->form->text('hour['.$key.']', $time_fields[1], 'size="7" placeholder="hour"')."</td>\n";
+				echo "<td>".$this->form->text('month_day['.$key.']', $time_fields[2], 'size="7" placeholder="month day"')."</td>\n";
+				echo "<td>".$this->form->text('month_num['.$key.']', $time_fields[3], 'size="7" placeholder="month num"')."</td>\n";
+				echo "<td>".$this->form->text('week_day['.$key.']', $time_fields[4], 'size="7" placeholder="week day"')."</td>\n";
+				echo "<td>".$this->form->text('command['.$key.']', $command, 'size="60" placeholder="command" style="float: left"')." <a href=\"#\" class=\"ico ico_remove_line\"></a></td>\n";
 			}
 			echo "</tr>\n";
 		}

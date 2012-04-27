@@ -8,7 +8,6 @@ var CronjobsController = {
 	},
 	
 	cronjobs : function(){
-		$('.fillin').fillin();
 		$('#remove').click(function(e){
 			$('#action').val('remove');
 			$('#form').submit();
