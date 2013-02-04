@@ -93,6 +93,9 @@ class Cronjobs extends Fuel_base_controller {
 				$cronjob_lines = (array) $cronjob_file;
 			}
 		}
+
+
+
 		
 		// clean up whitespace
 		$cronjob_lines = array_map('trim', $cronjob_lines);
@@ -104,7 +107,10 @@ class Cronjobs extends Fuel_base_controller {
 			unset($cronjob_lines[0]);
 			$cronjob_lines = array_values($cronjob_lines); // reset
 		}
-		
+		if ($this->input->get('command'))
+		{
+			$cronjob_lines[] = "0 0 * * * ".urldecode($this->input->get('command'));
+		}
 		
 		$vars['cronjob_path'] = $cronjob_path;
 		$vars['action'] = $action;
