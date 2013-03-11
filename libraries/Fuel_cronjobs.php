@@ -34,6 +34,7 @@ class Fuel_cronjobs extends Fuel_advanced_module {
 	public $mailto = ''; // mailto value of crontab
 	public $user = ''; // the user the crontab belongs to
 	public $sudo_pwd = ''; //the user password
+	public $permissions = 0777; // sets the permission of the cronfile
 
 	private $_jobs = array();
 	
@@ -135,7 +136,7 @@ class Fuel_cronjobs extends Fuel_advanced_module {
 		$cron .= implode($joiner.PHP_EOL, $this->_jobs);
 		$cron .= PHP_EOL; // !!!important... for cronjobs to run, you must have this ending newline
 
-		if (file_exists($this->cronfile))
+		if (!empty($this->cronfile) and file_exists($this->cronfile))
 		{
 			$open = @fopen($this->cronfile, "w"); // This overwrites current line
 			if (!@fwrite($open, $cron)) return FALSE;
@@ -152,10 +153,10 @@ class Fuel_cronjobs extends Fuel_advanced_module {
 			$dir = implode(DIRECTORY_SEPARATOR, $dir).DIRECTORY_SEPARATOR;
 			if (!is_writable($this->cronfile))
 			{
-				@mkdir($dir, 0777, TRUE);
+				@mkdir($dir, $this->permissions, TRUE);
 			}
 			touch($this->cronfile); // create the file, Directory "cron" must be writeable
-			chmod($this->cronfile, 0777); // make new file writeable
+			chmod($this->cronfile, $this->permissions); // make new file writeable
 			$open = @fopen($this->cronfile, "w"); 
 			if (!@fwrite($open, $cron)) return FALSE;
 			fclose($open);

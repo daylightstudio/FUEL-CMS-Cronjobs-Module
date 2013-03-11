@@ -1,3 +1,3 @@
 MAILTO=
-# change the path to the ci_cron.php file below
-0 12 * * * /usr/local/httpdocs/fuel/crons/ci_cron.php --run=/fuel/cron/db_backup 
+# change the path to your CI bootstrap index.php file below
+0 12 * * * /var/www/httpdocs/index.php backup/cron
