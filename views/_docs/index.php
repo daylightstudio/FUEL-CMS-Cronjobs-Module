@@ -28,8 +28,12 @@ include the assets folder as well as email it as an attachment. Below is an exam
 // using the CI 2.x CLI (Command Line Interface)
 php /var/www/httpdocs/index.php backup/cron
 
+// using the ci_cron.php script that comes with FUEL
+php /var/www/httpdocs/fuel/modules/cronjobs/crons/ci_cron.php backup/cron
+
 // adding a 1 at the end of the URI path will include the assets (if not specified in the config) and can be used with either method
-php /var/www/httpdocs/index.php backup/cron/1
+php /var/www/httpdocs/fuel/modules/cronjobs/crons/ci_cron.php backup/cron/1
+
 </pre>
 <p class="important">If you are on a Mac and having trouble where the script is outputting nothing, you may need to make sure 
 you are calling the right php binary. In our case, I needed to call /Applications/MAMP/bin/php/php5.3.6/bin/php.
