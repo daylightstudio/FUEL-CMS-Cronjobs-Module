@@ -13,6 +13,6 @@ $config['nav']['tools']['tools/cronjobs'] = lang('module_cronjobs');
 |--------------------------------------------------------------------------
 */
 // directory for cronjobs relative to the install root
-$config['cronjobs']['crons_folder'] = 'crons/';
+$config['cronjobs']['crons_folder'] = 'modules/cronjobs/crons/';
 $config['cronjobs']['cron_user'] = '';
 $config['cronjobs']['sudo_pwd'] = '';
