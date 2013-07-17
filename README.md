@@ -1,5 +1,5 @@
 # CRONJOBS MODULE FOR FUEL CMS
-This is a [FUEL CMS](http://www.getfuelcms.com) cronjobs module for adding cronjobs like functionality including posts, categories, and commenting.
+This is a [FUEL CMS](http://www.getfuelcms.com) cronjobs module that can be used to manage cron jobs like periodically running database backups.
 
 ## INSTALLATION
 There are a couple ways to install the module. If you are using GIT you can use the following method
