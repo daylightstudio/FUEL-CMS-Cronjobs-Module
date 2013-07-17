@@ -1,4 +1,32 @@
 <?php
+/**
+ * FUEL CMS
+ * http://www.getfuelcms.com
+ *
+ * An open source Content Management System based on the 
+ * Codeigniter framework (http://codeigniter.com)
+ *
+ * @package		FUEL CMS
+ * @author		David McReynolds @ Daylight Studio
+ * @copyright	Copyright (c) 2013, Run for Daylight LLC.
+ * @license		http://docs.getfuelcms.com/general/license
+ * @link		http://www.getfuelcms.com
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * A Cronjob wrapper class
+ *
+ * @package		FUEL CMS
+ * @subpackage	Libraries
+ * @category	Libraries
+ * @author		David McReynolds @ Daylight Studio
+ * @link		http://docs.getfuelcms.com/modules/cronjobs
+ */
+
+// ------------------------------------------------------------------------
 require_once(FUEL_PATH.'/libraries/Fuel_base_controller.php');
 
 class Cronjobs extends Fuel_base_controller {
