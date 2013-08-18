@@ -1,5 +1,5 @@
-var CronjobsController = {
-	
+CronjobsController = jqx.createController(fuel.controller.BaseFuelController, {
+
 	init : function(initObj){
 		this._submit();
 		this._super(initObj);
@@ -20,5 +20,4 @@ var CronjobsController = {
 			return false;
 		});
 	}
-};
-jqx.extendController(CronjobsController);
+});
