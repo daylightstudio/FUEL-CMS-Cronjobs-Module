@@ -14,6 +14,9 @@ class Cronjobs extends Fuel_base_controller {
 	{
 		$this->_validate_user('cronjobs');
 		$this->load->helper('security');
+
+		// for register errors
+		$this->load->library('validator');
 		
 		$this->js_controller = 'CronjobsController';
 		$this->js_controller_params['method'] = 'cronjobs';
@@ -52,7 +55,10 @@ class Cronjobs extends Fuel_base_controller {
 						$month_num = ($_POST['month_num'][$i] == 'month num') ? NULL : xss_clean($_POST['month_num'][$i]);
 						$week_day = ($_POST['week_day'][$i] == 'week day') ? NULL : xss_clean($_POST['week_day'][$i]);
 						$command = xss_clean($_POST['command'][$i]);
-						$this->fuel->cronjobs->add($min, $hour, $month_day, $month_num, $week_day, $command);
+						if (!$this->fuel->cronjobs->add($min, $hour, $month_day, $month_num, $week_day, $command))
+						{
+							add_error($this->fuel->cronjobs->last_error());
+						}
 					}
 				}
 
@@ -68,7 +74,6 @@ class Cronjobs extends Fuel_base_controller {
 			}
 			
 		}
-		
 		
 		$cronjob_file = $this->fuel->cronjobs->view();
 		$action = 'edit';
@@ -96,9 +101,6 @@ class Cronjobs extends Fuel_base_controller {
 				$cronjob_lines = (array) $cronjob_file;
 			}
 		}
-
-
-
 		
 		// clean up whitespace
 		$cronjob_lines = array_map('trim', $cronjob_lines);

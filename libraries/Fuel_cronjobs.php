@@ -97,11 +97,49 @@ class Fuel_cronjobs extends Fuel_advanced_module {
 			{
 				if (!isset($$seg)) $$seg = '*';
 			}
-			$command = trim($command);
+
+			// store original to compare after cleansing
+			$orig_command = $command;
+
+			// general escaping of command
+			$command = escapeshellcmd(trim($command));
+
+			// allow certain ones back
+			$command = str_replace(array('2\>\&1','\>'), array('2>&1', '>'), $command);
+
+			if (!$this->validate_command($command) OR $orig_command != $command)
+			{
+				$this->_add_error(lang('cronjobs_invalid_command'));
+				return FALSE;
+			}
 			if (!empty($command)) $job = $min." ".$hour." ".$month_day." ".$month_num." ".$week_day." ".$command;
 		}
 		
 		if (!empty($job)) $this->_jobs[] = $job;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Validates the command being run to help against malicious attack
+	 * 
+	 * @access	public
+	 * @return	boolean
+	 */
+	function validate_command($cmd)
+	{
+		$command_index = strpos($cmd, ' ');
+		$command = substr($cmd, 0, $command_index);
+		if (!in_array($command, $this->config('valid_commands')))
+		{
+			return FALSE;
+		}
+
+		// cannot pipe commands together... for security
+		if (preg_match('#\|#', $cmd))
+		{
+			return FALSE;
+		}
 	}
 	
 	// --------------------------------------------------------------------
@@ -117,6 +155,12 @@ class Fuel_cronjobs extends Fuel_advanced_module {
 	 */
 	function create()
 	{
+		// if any errors have been registered, then we simply return FALSE
+		if ($this->has_errors())
+		{
+			return FALSE;
+		}
+
 		// if arguments are passed to this method then we will pass them to the add method
 		$args = func_get_args();
 		$exec = $this->_exec('crontab '.$this->cronfile);

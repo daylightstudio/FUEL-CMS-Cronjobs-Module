@@ -7,7 +7,7 @@ We recommend <a href="http://www.google.com/search?client=safari&rls=en-us&q=cro
 you are not familiar with them already.';
 
 $lang['cronjobs_success'] = 'You\'ve successfully saved the cronjob.';
-$lang['cronjobs_write_error'] = 'There was an error in creating your cronjob. Please check to make sure the file can be writtin to %1s.';
+$lang['cronjobs_write_error'] = 'There was an error in creating your cronjob. Please check to make sure the file can be written to %1s.';
 
 $lang['btn_remove_cronjobs'] = 'Remove Cron Job(s)';
 $lang['btn_save_cronjobs'] = 'Save Cron Job(s)';
@@ -21,3 +21,4 @@ $lang['cronjobs_month_num'] = 'month num';
 $lang['cronjobs_week_day'] = 'week day';
 $lang['cronjobs_command'] = 'command';
 
+$lang['cronjobs_invalid_command'] = 'Invalid command';
