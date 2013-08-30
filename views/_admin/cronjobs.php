@@ -27,7 +27,9 @@
 				echo "<td>".$this->form->text('month_day['.$key.']', $time_fields[2], 'size="10" placeholder="month day"')."</td>\n";
 				echo "<td>".$this->form->text('month_num['.$key.']', $time_fields[3], 'size="10" placeholder="month num"')."</td>\n";
 				echo "<td>".$this->form->text('week_day['.$key.']', $time_fields[4], 'size="10" placeholder="week day"')."</td>\n";
-				echo "<td>".$this->form->text('command['.$key.']', $command, 'size="100" placeholder="command" style="float: left"')." <a href=\"#\" class=\"ico ico_remove_line\"></a></td>\n";
+
+				// use normal field to help with displaying commands with >> in them correctly 
+				echo "<td><input type=\"text\" name=\"command[".$key."]\" value=\"".$command."\"size=\"100\" placeholder=\"command\" style=\"float: left\"/> <a href=\"#\" class=\"ico ico_remove_line\"></a></td>\n";
 			}
 			echo "</tr>\n";
 		}

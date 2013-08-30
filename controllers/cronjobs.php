@@ -13,7 +13,8 @@ class Cronjobs extends Fuel_base_controller {
 	function index()
 	{
 		$this->_validate_user('cronjobs');
-	
+		$this->load->helper('security');
+		
 		$this->js_controller = 'CronjobsController';
 		$this->js_controller_params['method'] = 'cronjobs';
 		$this->js_controller_path = js_path('', 'cronjobs');
@@ -22,7 +23,7 @@ class Cronjobs extends Fuel_base_controller {
 		$cronjob_path = INSTALL_ROOT.$crons_folder.'crontab.php';
 		
 		$params['cronfile'] = $cronjob_path;
-		$params['mailto'] = $this->input->post('mailto');
+		$params['mailto'] = $this->input->post('mailto', TRUE);
 		$params['user'] = $this->fuel->cronjobs->config('cron_user');
 		$params['sudo_pwd'] = $this->fuel->cronjobs->config('sudo_pwd');
 		
@@ -45,12 +46,12 @@ class Cronjobs extends Fuel_base_controller {
 				{
 					if (!empty($_POST['command'][$i]) AND $_POST['command'][$i] != 'command')
 					{
-						$min = ($_POST['min'][$i] == 'min') ? NULL : $_POST['min'][$i];
-						$hour = ($_POST['hour'][$i] == 'hour') ? NULL : $_POST['hour'][$i];
-						$month_day = ($_POST['month_day'][$i] == 'month day') ? NULL : $_POST['month_day'][$i];
-						$month_num = ($_POST['month_num'][$i] == 'month num') ? NULL : $_POST['month_num'][$i];
-						$week_day = ($_POST['week_day'][$i] == 'week day') ? NULL : $_POST['week_day'][$i];
-						$command = $_POST['command'][$i];
+						$min = ($_POST['min'][$i] == 'min') ? NULL : xss_clean($_POST['min'][$i]);
+						$hour = ($_POST['hour'][$i] == 'hour') ? NULL : xss_clean($_POST['hour'][$i]);
+						$month_day = ($_POST['month_day'][$i] == 'month day') ? NULL : xss_clean($_POST['month_day'][$i]);
+						$month_num = ($_POST['month_num'][$i] == 'month num') ? NULL : xss_clean($_POST['month_num'][$i]);
+						$week_day = ($_POST['week_day'][$i] == 'week day') ? NULL : xss_clean($_POST['week_day'][$i]);
+						$command = xss_clean($_POST['command'][$i]);
 						$this->fuel->cronjobs->add($min, $hour, $month_day, $month_num, $week_day, $command);
 					}
 				}
