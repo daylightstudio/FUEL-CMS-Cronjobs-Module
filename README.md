@@ -16,7 +16,7 @@ Type in:
 
 ### MANUAL
 1. Download the zip file from GitHub:
-[https://github.com/daylightstudio/FUEL-CMS-Cronjobs-Module](https://github.com/daylightstudio/FUEL-CMS-cronjobs-Module)
+[https://github.com/daylightstudio/FUEL-CMS-Cronjobs-Module](https://github.com/daylightstudio/FUEL-CMS-Cronjobs-Module)
 
 2. Create a "cronjobs" folder in fuel/modules/ and place the contents of the cronjobs module folder in there.
 
