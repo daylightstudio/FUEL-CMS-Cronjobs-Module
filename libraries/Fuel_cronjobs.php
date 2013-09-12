@@ -140,6 +140,7 @@ class Fuel_cronjobs extends Fuel_advanced_module {
 		{
 			return FALSE;
 		}
+		return TRUE;
 	}
 	
 	// --------------------------------------------------------------------
