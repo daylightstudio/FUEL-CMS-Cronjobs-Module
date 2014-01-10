@@ -39,7 +39,7 @@ php /var/www/httpdocs/fuel/modules/cronjobs/crons/ci_cron.php backup/cron/1
 
 <h3>Using CURL or wget and a Webhook IP Address</h3>
 <p>If you are having trouble with using the php intepreter to run the script, you can also use <dfn>CURL</dfn> or <dfn>wget</dfn> to call the backup script.
-For it to work, you must set the <dfn>webhook_romote_ip</dfn> configuration parameter in the <span class="file">fuel/application/config/MY_fuel.php</span> file to
+For it to work, you must set the <dfn>webhook_remote_ip</dfn> configuration parameter in the <span class="file">fuel/application/config/MY_fuel.php</span> file to
 the server's IP address that is calling the script.
 </p>
 <pre class="brush: php">
