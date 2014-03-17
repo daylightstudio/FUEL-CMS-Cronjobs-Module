@@ -102,14 +102,16 @@ class Fuel_cronjobs extends Fuel_advanced_module {
 			$orig_command = trim($command);
 
 			// general escaping of command
-			$command = escapeshellcmd(trim($command));
+			if (!in_array($orig_command, $this->config('valid_commands')))
+			{
+				$command = escapeshellcmd(trim($command));
 
-			// allow certain ones back
-			$command = str_replace(array('2\>\&1','\>', '\~'), array('2>&1', '>', '\~'), $command);
+				// allow certain ones back
+				$command = str_replace(array('2\>\&1','\>', '\~'), array('2>&1', '>', '\~'), $command);
+			}
 
 			if (!$this->validate_command($orig_command))
 			{
-
 				$this->_add_error(lang('cronjobs_invalid_command'));
 				return FALSE;
 			}
