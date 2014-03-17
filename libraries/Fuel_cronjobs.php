@@ -99,16 +99,17 @@ class Fuel_cronjobs extends Fuel_advanced_module {
 			}
 
 			// store original to compare after cleansing
-			$orig_command = $command;
+			$orig_command = trim($command);
 
 			// general escaping of command
 			$command = escapeshellcmd(trim($command));
 
 			// allow certain ones back
-			$command = str_replace(array('2\>\&1','\>'), array('2>&1', '>'), $command);
+			$command = str_replace(array('2\>\&1','\>', '\~'), array('2>&1', '>', '\~'), $command);
 
-			if (!$this->validate_command($command) OR $orig_command != $command)
+			if (!$this->validate_command($orig_command))
 			{
+
 				$this->_add_error(lang('cronjobs_invalid_command'));
 				return FALSE;
 			}
@@ -130,9 +131,9 @@ class Fuel_cronjobs extends Fuel_advanced_module {
 	{
 		$command_index = strpos($cmd, ' ');
 		$command = substr($cmd, 0, $command_index);
-		if (!in_array($command, $this->config('valid_commands')))
+		if (in_array($command, $this->config('valid_commands')) OR in_array($cmd, $this->config('valid_commands')))
 		{
-			return FALSE;
+			return TRUE;
 		}
 
 		// cannot pipe commands together... for security

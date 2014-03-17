@@ -31,7 +31,7 @@ class Cronjobs extends Fuel_base_controller {
 		$params['sudo_pwd'] = $this->fuel->cronjobs->config('sudo_pwd');
 		
 		$this->fuel->cronjobs->set_params($params);
-		
+
 		if (!empty($_POST))
 		{
 			if ($this->input->post('action') == 'remove')
@@ -44,24 +44,23 @@ class Cronjobs extends Fuel_base_controller {
 
 				$num = count($_POST['command']);
 				$line = '';
-
-				for ($i = 0; $i < $num; $i++)
+				foreach($_POST['command'] as $key => $command)
 				{
-					if (!empty($_POST['command'][$i]) AND $_POST['command'][$i] != 'command')
+					if (!empty($command) AND $command != 'command')
 					{
-						$min = ($_POST['min'][$i] == 'min') ? NULL : xss_clean($_POST['min'][$i]);
-						$hour = ($_POST['hour'][$i] == 'hour') ? NULL : xss_clean($_POST['hour'][$i]);
-						$month_day = ($_POST['month_day'][$i] == 'month day') ? NULL : xss_clean($_POST['month_day'][$i]);
-						$month_num = ($_POST['month_num'][$i] == 'month num') ? NULL : xss_clean($_POST['month_num'][$i]);
-						$week_day = ($_POST['week_day'][$i] == 'week day') ? NULL : xss_clean($_POST['week_day'][$i]);
-						$command = xss_clean($_POST['command'][$i]);
+						$min = ($_POST['min'][$key] == 'min') ? NULL : xss_clean($_POST['min'][$key]);
+						$hour = ($_POST['hour'][$key] == 'hour') ? NULL : xss_clean($_POST['hour'][$key]);
+						$month_day = ($_POST['month_day'][$key] == 'month day') ? NULL : xss_clean($_POST['month_day'][$key]);
+						$month_num = ($_POST['month_num'][$key] == 'month num') ? NULL : xss_clean($_POST['month_num'][$key]);
+						$week_day = ($_POST['week_day'][$key] == 'week day') ? NULL : xss_clean($_POST['week_day'][$key]);
+						$command = xss_clean($command);
 						if (!$this->fuel->cronjobs->add($min, $hour, $month_day, $month_num, $week_day, $command))
 						{
 							add_error($this->fuel->cronjobs->last_error());
 						}
 					}
 				}
-
+				
 				if ($this->fuel->cronjobs->create())
 				{
 					$this->session->set_flashdata('success', lang('cronjobs_success'));
