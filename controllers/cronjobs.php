@@ -23,8 +23,8 @@ class Cronjobs extends Fuel_base_controller {
 		$this->js_controller_path = js_path('', 'cronjobs');
 
 		$crons_folder = $this->fuel->cronjobs->config('crons_folder');
-		$cronjob_path = INSTALL_ROOT.$crons_folder.'crontab.txt';
-		
+		$cronjob_path = $crons_folder.'crontab.txt';
+
 		$params['cronfile'] = $cronjob_path;
 		$params['mailto'] = $this->input->post('mailto', TRUE);
 		$params['user'] = $this->fuel->cronjobs->config('cron_user');
