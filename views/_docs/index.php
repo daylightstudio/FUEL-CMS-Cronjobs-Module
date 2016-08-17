@@ -52,10 +52,7 @@ the server's IP address that is calling the script.
 
 
 <p class="important">If you are on a Mac and having trouble where the script is outputting nothing, you may need to make sure 
-you are calling the right php binary. In our case, I needed to call /Applications/MAMP/bin/php/php5.3.6/bin/php.
-Here is a thread that talks about it more:
-<a href="http://codeigniter.com/forums/viewthread/130383/" target="_blank">http://codeigniter.com/forums/viewthread/130383/</a>
-Hopefully it saves you some time too!
+you are calling the right php binary. In our case, we needed to call /Applications/MAMP/bin/php/php5.x/bin/php.
 </p>
 <p class="important">If you are having issues with server variables not being set, there is an area in the <dfn>index.php</dfn> bootstrap file where you can set those:</p>
 <pre class="brush: php">
